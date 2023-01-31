@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import React ,{useState,useEffect} from 'react';
 import { Box,Stack,Typography} from '@mui/material';
 
 import{fetchFromAPI} from '../utils/fetchFromAPI';
@@ -6,7 +6,7 @@ import {Sidebar , Videos} from './';
 
 const Feed = () => {
 const [selectedCategory, setSelectedCategory] = useState('New');
-const [videos,setVideos]=useState([]);
+const [videos,setVideos]=useState(null);
 
   useEffect(()=>{
     fetchFromAPI('search?part=snippet&query=${selectedCategory}')
@@ -28,10 +28,10 @@ Copyright 2023 Made by Anand
   <Typography variant="h4" fontWeight ="bold" mb={2} sx={{color:'white'}}>
     {selectedCategory} <span style={{color:'#f31503'}}>Videos</span>
   </Typography>
-  <Videos videos={[videos]} />
+  <Videos videos={videos} />
 </Box>
   </Stack>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
